@@ -4,6 +4,7 @@ using RPG.Combat;
 using UnityEngine;
 using RPG.Core;
 using RPG.Movement;
+using System;
 
 namespace RPG.Control
 {
@@ -11,6 +12,9 @@ namespace RPG.Control
     {
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 3f;
+        [SerializeField] PatrolPath patrolPath;
+        [SerializeField] float  waypointTolerance = 1f;
+        [SerializeField] float waypointDwellTime = 3f;
 
         Fighter fighter;
         GameObject player;
@@ -19,6 +23,8 @@ namespace RPG.Control
 
         Vector3 guardPosition;
         float timeSinceLastSawPlayer = Mathf.Infinity;
+        float timeSinceArrivedAtWaypoint = Mathf.Infinity;
+        int currenWayPointIndex = 0;
         
         private void Start() 
         {
@@ -37,37 +43,84 @@ namespace RPG.Control
             {
                 return;
             }
+            //when player is near enemy,the enemy will chase player.
             //agar disaat player mendekati musuh, player akan dikejar.
-           if (InAttackRange() && fighter.CanAttack(player))
+            if (InAttackRange() && fighter.CanAttack(player))
             {
-                timeSinceLastSawPlayer = 0;
                 AttackBehavior();
             }
 
-            else if(timeSinceLastSawPlayer < suspicionTime)
+            else if (timeSinceLastSawPlayer < suspicionTime)
             {
-                //method agar musuh disaat tidak mengejar player, musuh-
-                //tidak akan langsung kembali ke posisi awal.
+                //a method to delay enemy from going back to it original position whenever it not chasing  the player
+                //method untuk mendelay musuh agar musuh tidak langsung kembali ke posisi awal saat tidak mengejar player
                 SuspicionBehavior();
             }
 
             //agar musuh berhenti mengejar player
             else
             {
-                //method untuk membuat enemy kembali ke posisi awal
-                
-                GuardBehavior();
+                //a method to make enemy go back to it original position.
+                //method untuk membuat enemy kembali ke posisi awal.
+                PatrolBehavior();
             }
 
+            UpdateTimers();
+        }
+
+        private void UpdateTimers()
+        {
             timeSinceLastSawPlayer += Time.deltaTime;
+            timeSinceArrivedAtWaypoint += Time.deltaTime;
         }
 
 
         //memakai mover.startmoveaction karena setiap startmoveaction dipanggil-
         //semua kegiatan yang sedang dilakukan akan dibatalkan.
-        private void GuardBehavior()
+        private void PatrolBehavior()
         {
-            mover.StartMoveAction(guardPosition);
+            //this code to make
+            Vector3 nextPosition = guardPosition;
+            if (patrolPath != null)
+            {
+                if (AtWayPoint())
+                {
+                    timeSinceArrivedAtWaypoint = 0f;
+                    CycleWayPoint();
+                }
+                nextPosition = GetCurrentWayPoint();
+            }
+
+            //this code will make the npc to stay at waypoint within amount certain time.
+            //kode ini berfungsi untuk membuat npc diam pada waypoint dalam kurun waktu tertentu.
+            if (timeSinceArrivedAtWaypoint > waypointDwellTime)
+            {
+                mover.StartMoveAction(nextPosition);
+            }
+        }
+
+        //this method is to make an object know they're at the waypoint.
+        //method ini befungsi untuk membuat suatu object tau bahwa mereka berada di waypoint.
+        private bool AtWayPoint()
+        {
+            float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWayPoint());
+            //this is to check if the distanceToWayPoint is less than wayPointTolerance, it will return true.
+            //untuk mengecek jika distanceToWaypoint kurang dari wayPointTolerence, akan return true.
+            return distanceToWaypoint < waypointTolerance;
+        }
+
+        private void CycleWayPoint()
+        {
+            //this statement is to updates the value of currenWayPointIndex by using patrolPath to call GetNextIndex on currenWayPointIndex.
+            // statement ini beguna untuk mengupdate value currenWayPointIndex dengan menggunakan patrolPath untuk memanggil GetNextIndex pada currenWayPointIndex.
+            currenWayPointIndex = patrolPath.GetNextIndex(currenWayPointIndex);
+        }
+
+        private Vector3 GetCurrentWayPoint()
+        {
+            //this function is to call patrolPath to retrieve the WayPoint at the currenWayPointIndex.
+            //fungsi ini berguna untuk memanggil patrolPath untuk mengambil WayPoint pada currenWayPointIndex.
+            return patrolPath.GetWayPoint(currenWayPointIndex);
         }
 
         //agar musuh tidak langsung kembali ke posisi awal
@@ -79,6 +132,7 @@ namespace RPG.Control
         //method Attack dari fighter, agar musuh memanggil dapat menyerang player.
         private void AttackBehavior()
         {
+            timeSinceLastSawPlayer = 0;
             fighter.Attack(player);
         }
 

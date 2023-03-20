@@ -19,6 +19,8 @@ namespace RPG.Movement
         }
         void Update()
         {
+            //this code is to make navMeshAgent enalbed whenever the player isn't dead, and when the player is dead it will disable navMeshAgent.
+            //kode ini befungsi untuk mengaktifkan navMeshAgent disaat player tidak mati, tetapi akan menonaktifkan navMeshAgent disaat player mati.
             navMeshAgent.enabled = !health.IsDead();
             UpdateAnimator();
         }
