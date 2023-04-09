@@ -9,6 +9,7 @@ namespace RPG.Movement
     public class Mover : MonoBehaviour, IAction
     {
         [SerializeField] Transform target;
+        [SerializeField] float maxSpeed = 6f;
         NavMeshAgent navMeshAgent;
         Health health;
 
@@ -25,15 +26,29 @@ namespace RPG.Movement
             UpdateAnimator();
         }
 
-        public void StartMoveAction (Vector3 destination)
+        public void StartMoveAction (Vector3 destination, float speedFraction)
         {
+            // Get the ActionScheduler component from the current game object, and call the StartAction method on it, passing in 'this' as the argument.
+            // Ambil komponen ActionScheduler dari game object saat ini, dan panggil metode StartAction di dalamnya, dengan 'this' sebagai argumennya.
             GetComponent<ActionScheduler>().StartAction(this);
-            MoveTo(destination);
+
+            // Call the MoveTo method with the given destination and speedFraction arguments.
+            // Panggil metode MoveTo dengan argumen tujuan dan fraksi kecepatan yang diberikan.
+            MoveTo(destination, speedFraction);
         }
 
-        public void MoveTo(Vector3 destination)
+        public void MoveTo(Vector3 destination, float speedFraction)
         {
+            // Set the destination of the NavMeshAgent component attached to this game object to the given destination.
+            //Setel tujuan NavMeshAgent yang terpasang pada game object ini menjadi tujuan yang diberikan.
             navMeshAgent.destination = destination;
+
+            // Set the speed of the NavMeshAgent to the maximum speed (stored in the maxSpeed field) multiplied by the given speedFraction (clamped between 0 and 1 using Mathf.Clamp01).
+            // Setel kecepatan NavMeshAgent menjadi kecepatan maksimum (yang disimpan dalam variabel maxSpeed) dikali dengan fraksi kecepatan yang diberikan (diklem antara 0 dan 1 menggunakan Mathf.Clamp01).
+            navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction);
+
+            // Set isStopped to false to allow the NavMeshAgent to start moving towards the destination.
+            // Setel isStopped menjadi false untuk mengizinkan NavMeshAgent mulai bergerak menuju tujuan.
             navMeshAgent.isStopped = false;
         }
 
