@@ -2732,6 +2732,7 @@ GameObject:
   - component: {fileID: -6878910260788243323}
   - component: {fileID: 5869204063410205089}
   - component: {fileID: -5227319664971601585}
+  - component: {fileID: 7667766804966956079}
   m_Layer: 0
   m_Name: Bandit
   m_TagString: Enemy
@@ -2881,9 +2882,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6c428233b4dd84aabf9e3c6e1c87e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 2
   timeBetweenAttacks: 1
-  weaponDamage: 10
+  defaultWeapons: {fileID: 11400000, guid: 1a4562ebf8126c74fa11f25760cb9936, type: 2}
+  rightHandTransfrom: {fileID: 6969034892472273933}
+  leftHandTransfrom: {fileID: 6548396204022128237}
 --- !u!114 &-5227319664971601585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2896,6 +2898,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29397496c6523a94fa7b8823288c81d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7667766804966956079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112210348536471935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1 &4145145202639812363
 GameObject:
   m_ObjectHideFlags: 0

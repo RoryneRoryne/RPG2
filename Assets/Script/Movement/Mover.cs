@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using RPG.Core;
+using RPG.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour, IAction
+    public class Mover : MonoBehaviour, IAction, ISaveable
     {
         [SerializeField] Transform target;
         [SerializeField] float maxSpeed = 6f;
@@ -63,6 +64,36 @@ namespace RPG.Movement
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
             float speed = localVelocity.z;
             GetComponent<Animator>().SetFloat("ForwardSpeed", speed);
+        }
+
+        [System.Serializable]
+        struct MoverSaveData
+        {
+            public SerializableVector3 position;
+            public SerializableVector3 rotation;
+        }
+        //fungsi ini menreturn kondisi object yang memiliki script sebagai new SerializableVector3
+        public object CaptureState()
+        {
+            MoverSaveData data = new MoverSaveData();
+            data.position = new SerializableVector3 (transform.position);
+            data.rotation = new SerializableVector3 (transform.eulerAngles);
+            return data;
+        }
+
+        //mengembalikan kondisi object
+        public void RestoreState(object state)
+        {
+            //mengcasting object yang diberikan ke dalam dictionary
+            MoverSaveData data = (MoverSaveData)state;
+
+            //mematikan navmesh agent agar tidak bermasalah
+            GetComponent<NavMeshAgent>().enabled = false;
+
+            //mengatur posisi objek ke posisi sbelumnya
+            transform.position = data.position.ToVector();
+            transform.eulerAngles = data.rotation.ToVector();
+            GetComponent<NavMeshAgent>().enabled = true;
         }
     }
 }

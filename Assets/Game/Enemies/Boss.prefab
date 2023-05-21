@@ -6510,6 +6510,7 @@ GameObject:
   - component: {fileID: 7463673384047845576}
   - component: {fileID: 1616476747216242156}
   - component: {fileID: 8100195085618830594}
+  - component: {fileID: -6111710283709849187}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -6628,6 +6629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  maxSpeed: 6
 --- !u!114 &7463673384047845576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6645,6 +6647,7 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointTolerance: 1
   waypointDwellTime: 3
+  patrolSpeedFraction: 0.2
 --- !u!114 &1616476747216242156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6657,9 +6660,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6c428233b4dd84aabf9e3c6e1c87e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 2
   timeBetweenAttacks: 1
-  weaponDamage: 10
+  defaultWeapons: {fileID: 11400000, guid: 1a4562ebf8126c74fa11f25760cb9936, type: 2}
+  rightHandTransfrom: {fileID: 2858524322782525504}
+  leftHandTransfrom: {fileID: 2161142130491894304}
 --- !u!114 &8100195085618830594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6672,6 +6676,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29397496c6523a94fa7b8823288c81d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6111710283709849187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9082908808374342962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1 &9123161927577125702
 GameObject:
   m_ObjectHideFlags: 0
