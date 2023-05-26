@@ -10,6 +10,7 @@ namespace RPG.Combat
     {
         [SerializeField] float projectileSpeed = 1f;
         Health target = null;
+        float damage = 0f;
         
         // Update is called once per frame
         void Update()
@@ -24,9 +25,11 @@ namespace RPG.Combat
             transform.Translate(Vector3.forward * Time.deltaTime * projectileSpeed);
         }
 
-        public void SetTarget(Health target)
+        //untuk menentukan target dengan damage
+        public void SetTarget(Health target, float damage)
         {
             this.target  = target;
+            this.damage = damage;
         }
         private Vector3 GetAimLocation()
         {
@@ -36,6 +39,18 @@ namespace RPG.Combat
                 return target.transform.position;
             }
             return target.transform.position + Vector3.up * targetCollider.height / 2;
+        }
+
+        private void OnTriggerEnter(Collider other) 
+        {
+            //other akan mengecek jika Health tidak sama dengan targer maka return
+            if (other.GetComponent<Health>() != target)
+            {
+                return;
+            }
+            //target akan memanggil take damage.
+            target.TakeDamage(damage);
+            Destroy(gameObject);
         }
     }
 }

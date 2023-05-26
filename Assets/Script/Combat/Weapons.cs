@@ -58,7 +58,7 @@ namespace RPG.Combat
         public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
         {
             Projectile projectileSpawn = Instantiate(projectile, HandsTransform(rightHand, leftHand).position, Quaternion.identity);
-            projectileSpawn.SetTarget(target);
+            projectileSpawn.SetTarget(target, weaponDamage);
         }
 
         public float GetWeapDamage()

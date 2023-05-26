@@ -34,7 +34,7 @@ namespace RPG.Core
             isDead = true;
             GetComponent<Animator>().SetTrigger("die");
             GetComponent<ActionScheduler>().CancelAction();
-            Destroy(GameObject.FindGameObjectWithTag("Enemy"), 10);
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"), 5);
         }
 
         //untuk mensave state healthpoints
