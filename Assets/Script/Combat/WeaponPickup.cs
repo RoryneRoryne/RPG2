@@ -18,7 +18,7 @@ namespace RPG.Combat
             }
         }
 
-        private string HideForSeconds(float seconds)
+        private IEnumerator HideForSeconds(float seconds)
         {
             ShowPickup(false);
             yield return new WaitForSeconds(seconds);
