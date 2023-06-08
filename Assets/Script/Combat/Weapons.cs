@@ -1,3 +1,4 @@
+using System;
 using RPG.Core;
 using UnityEngine;
 
@@ -13,24 +14,52 @@ namespace RPG.Combat
         [SerializeField] bool isRightHand = true;
         [SerializeField] float weaponDamage = 5f;
         [SerializeField] float weaponRange = 2f;
+        const string weaponName = "Weapons";
         
         
 
         public void Spawn(Transform rightHand, Transform leftHand, Animator animator)
         {
-            Transform handTransform = HandsTransform(rightHand, leftHand);
+            DestroyCurrentWeapon(rightHand, leftHand);
             //if berfungsi untuk menghindari error null pada weapPrefab
             if (equippedPrefabb != null)
             {
+                Transform handTransform = HandsTransform(rightHand, leftHand);
                 //untuk memunculkan weap prefab pada handtransform.
-                Instantiate(equippedPrefabb, handTransform);
+                GameObject weapons = Instantiate(equippedPrefabb, handTransform);
+                weapons.name = weaponName;
             }
+
+            //mengkonversi runtimeAnimatorController objek 'animator' menjadi AnimatorOverrideController dan menetapkannya ke variabel 'overrideController'.
+            var overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
             //if berfungsi untuk menghindari error null pada animator override.
             if (animatorOverride != null)
             {
                 //untuk mengganti animasi yang sudah terdapat pada animator controller.
                 animator.runtimeAnimatorController = animatorOverride;
             }
+            //Jika animatorOverride tidak diberikan, AnimatorOverrideController akan memakai root animator.
+            else if (overrideController != null)
+            {
+                // Mengatur runtimeAnimatorController dari overrideController sebagai runtimeAnimatorController baru.
+                // agar menggunakan AnimatorOverrideController pada root animator.
+                animator.runtimeAnimatorController = overrideController.runtimeAnimatorController; 
+            }
+        }
+
+        private void DestroyCurrentWeapon(Transform rightHand, Transform leftHand)
+        {
+            Transform currentWeapons = rightHand.Find(weaponName);
+            if (currentWeapons == null)
+            {
+                currentWeapons = leftHand.Find(weaponName);
+            }
+            if (currentWeapons == null)
+            {
+                return;
+            }
+            currentWeapons.name = "OldWeapon";
+            Destroy(currentWeapons.gameObject);
         }
 
         private Transform HandsTransform(Transform rightHand, Transform leftHand)

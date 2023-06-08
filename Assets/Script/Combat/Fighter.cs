@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using RPG.Core;
+using RPG.Saving;
 using RPG.Movement;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
@@ -21,10 +22,12 @@ namespace RPG.Combat
         [SerializeField] Transform leftHandTransfrom = null;
         
 
-
         private void Start() 
         {
-            EquipWeapon(defaultWeapons);
+            if (currentWeapons == null)
+            {
+                EquipWeapon(defaultWeapons);
+            }
         }
 
         private void Update()
@@ -91,6 +94,7 @@ namespace RPG.Combat
         {
             Hit();
         }
+        
         private bool GetIsInRange()
         {
             return Vector3.Distance(transform.position, target.transform.position) < currentWeapons.GetWeapRange();
@@ -123,6 +127,21 @@ namespace RPG.Combat
         {
             GetComponent<Animator>().ResetTrigger("attack");
             GetComponent<Animator>().SetTrigger(name: "stopAttack");
+        }
+
+        public object CaptureState()
+        {
+            return currentWeapons.name;
+        }
+
+        public void RestoreState(object state)
+        {
+            // Mengonversi state menjadi string dan menetapkannya ke weaponsName.
+            string weaponsName = (string) state;
+            // Memuat objek senjata dari folder Resources menggunakan weaponsName.
+            Weapons weapons = Resources.Load<Weapons>(weaponsName);
+            //equip senjata.
+            EquipWeapon(weapons);
         }
     }
 

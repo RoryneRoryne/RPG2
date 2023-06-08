@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
-  defaultWeapons: {fileID: 11400000, guid: 41fe2d0ae2492d94bbf10d64ad6cb70d, type: 2}
+  defaultWeapons: {fileID: 11400000, guid: 1a4562ebf8126c74fa11f25760cb9936, type: 2}
   rightHandTransfrom: {fileID: 790251578993988738}
   leftHandTransfrom: {fileID: 790251578993996810}
 --- !u!114 &790251578272059937

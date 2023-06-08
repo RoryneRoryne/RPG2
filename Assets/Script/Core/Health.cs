@@ -10,6 +10,7 @@ namespace RPG.Core
     {
         [SerializeField] float healthPoints = 100f;
         bool isDead = false;
+        float deathTimer = 3f;
 
         public bool IsDead()
          {
@@ -34,7 +35,7 @@ namespace RPG.Core
             isDead = true;
             GetComponent<Animator>().SetTrigger("die");
             GetComponent<ActionScheduler>().CancelAction();
-            Destroy(GameObject.FindGameObjectWithTag("Enemy"), 5);
+            Destroy(gameObject, deathTimer);
         }
 
         //untuk mensave state healthpoints
