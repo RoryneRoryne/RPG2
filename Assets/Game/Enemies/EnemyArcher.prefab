@@ -84,7 +84,7 @@ PrefabInstance:
       objectReference: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
     - target: {fileID: 5630253795603873467, guid: 2730335ae73ffa941ac9751abcc69084, type: 3}
       propertyPath: m_Name
-      value: Enemy (1)
+      value: EnemyArcher
       objectReference: {fileID: 0}
     - target: {fileID: 5630253795603873467, guid: 2730335ae73ffa941ac9751abcc69084, type: 3}
       propertyPath: m_TagString
@@ -175,7 +175,7 @@ CapsuleCollider:
   m_Height: 2.0971866
   m_Direction: 1
   m_Center: {x: 0.009405732, y: 0.8961921, z: 1.4558771e-10}
---- !u!114 &3718082242246683507
+--- !u!114 &-1475517060203999385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,36 +184,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7074608593444590549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0196e1812433c6409051b7275975536, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d8e61a8b123e12498043506824b6b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
---- !u!114 &3718082242246683506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7074608593444590549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9f99ad4ecfb3249bf94aa543d627b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1681527627101177838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7074608593444590549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44629c9e650d06849b2eabd0faff2e89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  maxSpeed: 6
+  startingLevel: 1
+  charClass: 5
+  progression: {fileID: 11400000, guid: d971a076cb1f36e4fa4f3d8dfa5633f5, type: 2}
 --- !u!114 &5276342403784892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +224,45 @@ MonoBehaviour:
   defaultWeapons: {fileID: 11400000, guid: b16e7c7e442745c47a9a2a35e63c6533, type: 2}
   rightHandTransfrom: {fileID: 61819294451926872}
   leftHandTransfrom: {fileID: 61819294452000602}
+--- !u!114 &1681527627101177838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074608593444590549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44629c9e650d06849b2eabd0faff2e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  maxSpeed: 6
+--- !u!114 &3718082242246683506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074608593444590549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9f99ad4ecfb3249bf94aa543d627b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3718082242246683507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074608593444590549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0196e1812433c6409051b7275975536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 100
 --- !u!114 &6995375974268033085
 MonoBehaviour:
   m_ObjectHideFlags: 0

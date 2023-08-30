@@ -6,6 +6,7 @@ using RPG.Saving;
 using RPG.Movement;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Attributes;
 
 namespace RPG.Combat
 {
@@ -54,6 +55,11 @@ namespace RPG.Combat
             weapons.Spawn(rightHandTransfrom, leftHandTransfrom, animator);
         }
 
+        public Health GetTarget()
+        {
+            return target;
+        }
+
         private void AttackBehavior()
         {
             transform.LookAt(target.transform);
@@ -76,17 +82,17 @@ namespace RPG.Combat
         {
             //alasan kenapa script untuk menerima damage berada dalam Hit
             //agar musuh akan terkena damage saat animasi menyerang menyentuh target
-            if (target == null)
+            if (target == null || target.IsDead())
             {
                 return;
             }
              if (currentWeapons.HasProjectile())
             {
-                currentWeapons.LaunchProjectile(rightHandTransfrom, leftHandTransfrom, target);
+                currentWeapons.LaunchProjectile(rightHandTransfrom, leftHandTransfrom, target, gameObject);
             }
             else
             {
-                target.TakeDamage(currentWeapons.GetWeapDamage());
+                target.TakeDamage(gameObject,currentWeapons.GetWeapDamage());
             }   
         }
 

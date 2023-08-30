@@ -25,14 +25,22 @@ namespace RPG.SceneManagement
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Load();
-        }
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             Save();
         }
+        
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Load();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            Delete();
+        }
+
     }
 
         public void Save()
@@ -45,6 +53,11 @@ namespace RPG.SceneManagement
         {
             //memanggil method load dari saving system
             GetComponent<SavingSystem>().Load(defaultSaveFile);
+        }
+        
+        public void Delete()
+        {
+            GetComponent<SavingSystem>().Delete(defaultSaveFile);
         }
     }
 }

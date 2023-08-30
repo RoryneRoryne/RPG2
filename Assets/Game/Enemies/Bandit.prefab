@@ -2734,6 +2734,7 @@ GameObject:
   - component: {fileID: -5227319664971601585}
   - component: {fileID: 7667766804966956079}
   - component: {fileID: -783688948406054328}
+  - component: {fileID: 4273415421973314755}
   m_Layer: 0
   m_Name: Bandit
   m_TagString: Enemy
@@ -2928,6 +2929,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4273415421973314755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112210348536471935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8e61a8b123e12498043506824b6b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingLevel: 1
+  charClass: 3
+  progression: {fileID: 11400000, guid: d971a076cb1f36e4fa4f3d8dfa5633f5, type: 2}
 --- !u!1 &4145145202639812363
 GameObject:
   m_ObjectHideFlags: 0

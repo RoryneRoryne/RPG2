@@ -337,6 +337,10 @@ PrefabInstance:
       propertyPath: uniqueIdentifier
       value: 39b08855-6e1b-4387-8d66-96773540d895
       objectReference: {fileID: 0}
+    - target: {fileID: 1616476747216242156, guid: c57d1654cb1914b4baf57539ee7ae04e, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9080482746802694958, guid: c57d1654cb1914b4baf57539ee7ae04e, type: 3}
       propertyPath: m_RootOrder
       value: 0

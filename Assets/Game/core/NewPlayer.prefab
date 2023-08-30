@@ -964,6 +964,8 @@ GameObject:
   - component: {fileID: 790251578272059937}
   - component: {fileID: 790251578272059936}
   - component: {fileID: 3129192412898377110}
+  - component: {fileID: 790251579196537372}
+  - component: {fileID: 5130206754069903011}
   m_Layer: 0
   m_Name: NewPlayer
   m_TagString: Player
@@ -1193,6 +1195,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: player
+--- !u!114 &790251579196537372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790251578994230364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8e61a8b123e12498043506824b6b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingLevel: 1
+  charClass: 0
+  progression: {fileID: 11400000, guid: d971a076cb1f36e4fa4f3d8dfa5633f5, type: 2}
+--- !u!114 &5130206754069903011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790251578994230364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d335ee12c937a4c93ea0ac7c3d02f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expPoints: 0
 --- !u!1 &790251578994231124
 GameObject:
   m_ObjectHideFlags: 0

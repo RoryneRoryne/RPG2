@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using RPG.Core;
+using RPG.Attributes;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -10,10 +7,11 @@ namespace RPG.Combat
     {
         [SerializeField] float projectileSpeed = 1f;
         [SerializeField] bool isHoming = true;
-        [SerializeField] GameObject effecttWhenHit = null;
+        [SerializeField] GameObject effectWhenHit = null;
         [SerializeField] float maxLifeTime = 5f;
         // [SerializeField] GameObject[] destroyOnCollision = null;
         Health target = null;
+        GameObject instigator = null;
         float damage = 0f;
 
         private void Start() 
@@ -39,10 +37,12 @@ namespace RPG.Combat
         }
 
         //untuk menentukan target dengan damage
-        public void SetTarget(Health target, float damage)
+        public void SetTarget(Health target,GameObject instigator, float damage)
         {
             this.target  = target;
             this.damage = damage;
+            this.instigator = instigator;
+
             Destroy(gameObject, maxLifeTime);
         }
         private Vector3 GetAimLocation()
@@ -71,11 +71,11 @@ namespace RPG.Combat
                 return;
             }
             //target akan memanggil take damage.
-            target.TakeDamage(damage);
+            target.TakeDamage(instigator, damage);
 
-            if (effecttWhenHit != null)
+            if (effectWhenHit != null)
             {
-                Instantiate(effecttWhenHit, GetAimLocation(), transform.rotation);
+                Instantiate(effectWhenHit, GetAimLocation(), transform.rotation);
                 Destroy(gameObject);
             }
             Destroy(gameObject);

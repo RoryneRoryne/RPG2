@@ -16,5 +16,5 @@ MonoBehaviour:
   equippedPrefabb: {fileID: 6324046085198380125, guid: bde2d635f4028db48a6dbc33adc08820, type: 3}
   projectile: {fileID: 6357925253931742473, guid: 58bfb4113ce143c4b8a954aebd69de0e, type: 3}
   isRightHand: 0
-  weaponDamage: 49.69
+  weaponDamage: 50
   weaponRange: 20
