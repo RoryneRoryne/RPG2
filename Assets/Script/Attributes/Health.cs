@@ -15,7 +15,7 @@ namespace RPG.Attributes
         float healthPoints = -1f;
         bool isDead = false;   
 
-        private void Start() 
+        void Start() 
         {
             if (healthPoints < 0)
             {
