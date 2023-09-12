@@ -29,7 +29,7 @@ namespace RPG.Stats
             }
 
             // Mengembalikan nilai statistik dari array levels sesuai dengan level yang diminta.
-            return levels [level - 1];
+            return levels[level - 1];
 
         }
 

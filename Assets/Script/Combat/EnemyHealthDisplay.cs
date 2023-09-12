@@ -27,7 +27,7 @@ namespace RPG.Combat
             Health health = fighter.GetTarget();
             //Menampilkan HP Enemy dengan memanggil metode GetPercentage dari health.
             // Format string "{0:0}%" mengindikasikan bahwa kita ingin menampilkan nilai persentase.
-            GetComponent<TextMeshProUGUI>().SetText("{0:0}%", health.GetPercentage());
+            GetComponent<TextMeshProUGUI>().SetText("{0:0}/{1:0}", health.GetHealthPoints(), health.GetMaxHealthPoints());
         }
     }
 }
